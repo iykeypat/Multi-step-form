@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form | JECE Test</title>
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <style>
+            :root{
+    --lighter-color:rgb(158, 207, 207);
+    --light-color:cyan;
+    --dark-color:#002352;
+    --font-smaller: 14px;
+    --font-bigger: 20px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*,::before,::after{
+    box-sizing: border-box;
+}
+
+html{
+
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: white;
+    
+    /* background: var(--dark-color); */
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style: none;
+}
+
+h1,h2,h3{
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+img{
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.container{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.content{
+    border-radius: 15px;
+    background-color: var(--dark-color);
+    color: white;
+    /* width: 80%; */
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+}
+
+.heading{
+    margin-top: 1em;
+    padding-bottom:0;
+    padding-left: 6em;
+    padding-top: 3em;
+}
+
+.content hr{
+    margin-top: 2em;
+    margin-left: 3em;
+    margin-right: 3em;
+    border-color: var(--lighter-color);
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    background-color:var(--dark-color);
+}
+
+/* Progress */
+.form-box .progress{
+    position:relative;
+    padding: 1em;
+}
+
+
+
+/* PRogress steps */
+.progress ul.progress-steps {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 2em;
+}
+
+.progress ul.progress-steps li{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2em;
+}
+
+.progress ul.progress-steps li > span{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-smaller);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+    border-radius: 50%;
+    background-color: var(--lighter-color);
+    z-index: 1;
+}
+
+.progress ul.progress-steps li > span.point{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    font-size: var(--font-smaller);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+    border-radius: 50%;
+    background-color: var(--lighter-color);
+    z-index: 1;
+}
+
+
+
+#name img{
+    width: fit-content;
+    padding: 0.5em;
+}
+
+#city img{
+    width: fit-content;
+    padding: 0.5em;
+}
+
+
+#tel img{
+    width: fit-content;
+    padding: 0.5em;
+}
+.progress ul.progress-steps li.active > span{
+    color: white;
+    background-color: var(--light-color);
+    /* border: 4px solid var(--light-color); */
+    z-index: 1;
+}
+
+.progress ul.progress-steps li p span{
+    font-size: 0.7em;
+    color: var(--light-color);
+    display: none;
+}
+
+ .progress ul li p{
+    text-align: end;
+    position: absolute;
+    top: -2em;
+    font-size: 12px;
+    margin-right: 5px;
+ }
+
+/* FOrm */
+.form-box form{
+    width: 100%;
+    padding: 3em 1em;
+    background-color: var(--dark-color);
+    /* border-radius: 30px 30px 15px 15px; */
+}
+
+form > div{
+    /* max-width: 400px; */
+    margin: 0 auto;
+}
+
+form > div p{
+    color: var(--light-color);
+    margin-bottom: 2em;
+    font-size: 0.8em;
+}
+
+form > div > div:not(.checkbox){
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+
+form :where(input,select){
+    height: 40px;
+    padding: 0 1em;
+    border-radius: 7px;
+    outline-color: var(--secondary-color);
+    border: 1px solid var(--lighter-color);
+    background-color: transparent;
+}
+
+form label{
+    font-size: var(--font-smaller);
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+form .grouping {
+    display: flex;
+}
+
+form .grouping input{
+    max-width: 70px;
+    text-align: center;
+    margin-right: 1em;
+}
+
+form .checkbox input{
+    height: auto;
+}
+
+form > div:not(.btn-group){
+    display: none;
+    -webkit-animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateY(10%);
+        transform: translateY(10%);
+    }
+
+    100%{
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+form > div.active{
+    display: block;
+}
+
+
+/* btn group */
+.btn-group{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.btn-group [class*="btn-"]{
+    background-color: cyan;
+    color: black;
+    padding: 1em 2.5em;
+    border: 4px solid var(--lighter-color);
+    border-radius: 30px;
+    cursor: pointer;
+    -webkit-transition: background-color .3s, border-color .3s ease-out;
+    transition: background-color .3s, border-color .3s ease-out;
+}
+
+.btn-group [class*="btn-"]:disabled{
+    background-color: var(--lighter-color);
+    border-color: var(--lighter-color);
+    cursor: text;
+}
+
+.btn-group [class*="btn-"]:hover:not(:disabled){
+    background-color: var(--dark-color);
+    border-color: var(--light-color);
+    color: white;
+}
+
+::placeholder{
+    color: var(--lighter-color);
+}
+
+.btn-group .btn-submit,.form-three.active ~ .btn-group .btn-next{
+    display: none;
+}
+
+.form-three.active ~ .btn-group .btn-submit{
+    display: block;
+}
+
+.form-three.active ~ .btn-group{
+    justify-content: space-between;
+}
+
+.navbar{
+    display: flex;
+    flex-direction:left;
+    background-color: cyan;
+    height: 70px;
+    color: #002352;
+    border-bottom: solid #002352;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+
+@media screen and (min-width:700px){
+    .form-box{
+        flex-direction: row;
+    }
+    .form-box .progress{
+        flex: 1 0 35%;
+        min-width: 330px;
+        padding: 3em;
+    }
+
+    .progress ul.progress-steps{
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .progress ul.progress-steps li.first:not(:last-child)::before{
+        content: '';
+        position: absolute;
+        left: 165px;
+        top: 30px;
+        width: 2px;
+        height: 65px;
+        background-color: var(--lighter-color);
+    }
+
+
+    .progress ul.progress-steps li:not(:last-child,:first-child)::before{
+        content: '';
+        position: absolute;
+        left: 70px;
+        top: 30px;
+        width: 2px;
+        height: 65px;
+        background-color: var(--lighter-color);
+    }
+
+    .progress ul.progress-steps li span.point2::before{
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 10px;
+        width: 2px;
+        height: 70px;
+        background-color: var(--lighter-color);
+    }
+
+    .progress ul.progress-steps li span.point3::before{
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 10px;
+        width: 2px;
+        height: 30px;
+        background-color: var(--lighter-color);
+    }
+
+    .progress ul.progress-steps li span.point1::before{
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 10px;
+        width: 2px;
+        height: 70px;
+        background-color: var(--lighter-color);
+    }
+
+    .progress ul.progress-steps li span.point1::after{
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: -60px;
+        width: 2px;
+        height: 60px;
+        background-color: var(--lighter-color);
+    }
+
+
+    .form-box form{
+        padding: 3em;
+        /* border-radius: 0 15px 15px 0; */
+    }
+
+    .progress ul li p{
+        position: relative;
+        top: auto;
+        font-size: inherit;
+    }
+
+    .progress ul.progress-steps li p span{
+        display: block;
+    }
+}
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <h1>PATRICK</h1>
+        </div>
+        <div id="page" class="site">
+            <div class="container">
+                <div class="content">
+                <div class="heading">
+                    <h3>My Skill Level</h3>
+                    <p>Answer the following questions to begin your plan</p>
+                </div>
+                <hr>
+                <div class="form-box">
+                    <div class="progress">
+                        <ul class="progress-steps">
+                            <li class="first first1 step active">
+                                <p>Your Name <br><span>First, Middle, & Last name</span></p>
+                                <span id="name"> <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="user people person users man" id="user_people_person_users_man"><path d="M23.74,16.18a1,1,0,1,0-1.41,1.42A9,9,0,0,1,25,24c0,1.22-3.51,3-9,3s-9-1.78-9-3a9,9,0,0,1,2.63-6.37,1,1,0,0,0,0-1.41,1,1,0,0,0-1.41,0A10.92,10.92,0,0,0,5,24c0,3.25,5.67,5,11,5s11-1.75,11-5A10.94,10.94,0,0,0,23.74,16.18Z"/><path d="M16,17a7,7,0,1,0-7-7A7,7,0,0,0,16,17ZM16,5a5,5,0,1,1-5,5A5,5,0,0,1,16,5Z"/></g></svg>
+                                </span>
+                                <span class="point point1"> </span>
+                               
+                            </li>
+                            <li class="step">
+                                <p>City <br><span>Location </span></p>
+                                <span id="city"><?xml version="1.0" ?><svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M288 0C221.7 0 168 53.73 168 120c0 48.38 16.86 61.9 107.7 193.5c5.957 8.604 18.69 8.604 24.65 0C391.1 181.9 408 168.4 408 120C408 53.73 354.3 0 288 0zM288 176C261.5 176 240 154.5 240 128S261.5 80 288 80c26.48 0 48 21.53 48 48S314.5 176 288 176zM10.06 227.6C3.984 230 0 235.9 0 242.4v253.5c0 11.32 11.49 19.04 22 14.84L160 448V201.4C152.5 188.8 147.2 178 143.4 167.5L10.06 227.6zM326.6 331.8C317.9 344.4 303.4 352 288 352c-15.42 0-29.86-7.566-38.66-20.28C233.2 308.3 196.9 256.6 192 249.6V447.1L384 512V249.6C379.1 256.6 342.8 308.3 326.6 331.8zM554.1 161.2L416 224v288l149.9-67.59C572 441.1 576 436.1 576 429.6V176C576 164.7 564.6 156.1 554.1 161.2z"/></svg></span>
+                                <span class="point point2"> </span>
+                            </li>
+                            <li class="step">
+                                <p>Telephone <br><span>Number</span></p>
+                                <span id="tel"><?xml version="1.0" ?><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="1" id="_1"><path d="M348.73,450.06a198.63,198.63,0,0,1-46.4-5.85c-52.43-12.65-106.42-44.74-152-90.36s-77.71-99.62-90.36-152C46.65,146.75,56.15,99.61,86.69,69.07l8.72-8.72a42.2,42.2,0,0,1,59.62,0l50.11,50.1a42.18,42.18,0,0,1,0,59.62l-29.6,29.59c14.19,24.9,33.49,49.82,56.3,72.63s47.75,42.12,72.64,56.31L334.07,299a42.15,42.15,0,0,1,59.62,0l50.1,50.1a42.16,42.16,0,0,1,0,59.61l-8.73,8.72C413.53,439,383.73,450.06,348.73,450.06ZM125.22,78a12,12,0,0,0-8.59,3.56l-8.73,8.72c-22.87,22.87-29.55,60-18.81,104.49,11.37,47.13,40.64,96.1,82.41,137.86s90.73,71,137.87,82.41c44.5,10.74,81.61,4.06,104.48-18.81l8.72-8.72a12.16,12.16,0,0,0,0-17.19l-50.09-50.1a12.16,12.16,0,0,0-17.19,0l-37.51,37.51a15,15,0,0,1-17.5,2.72c-30.75-15.9-61.75-39.05-89.65-66.95s-51-58.88-66.94-89.63a15,15,0,0,1,2.71-17.5l37.52-37.51a12.16,12.16,0,0,0,0-17.19l-50.1-50.11A12.07,12.07,0,0,0,125.22,78Z"/><path d="M364.75,269.73a15,15,0,0,1-15-15,99.37,99.37,0,0,0-99.25-99.26,15,15,0,0,1,0-30c71.27,0,129.25,58,129.25,129.26A15,15,0,0,1,364.75,269.73Z"/><path d="M428.15,269.73a15,15,0,0,1-15-15c0-89.69-73-162.66-162.65-162.66a15,15,0,0,1,0-30c106.23,0,192.65,86.43,192.65,192.66A15,15,0,0,1,428.15,269.73Z"/></g></svg></span>
+                                <span class="point point3"> </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <form action="">
+                        <div class="form-one form-step active">
+                            <h3>Let's start with your name</h2>
+                            <p>Please fill in the details below</p>
+                            <div>
+                                <label>Enter your Name</label>
+                                <input type="text" placeholder="e.g John Doe Prince">
+                            </div>
+                        </div>
+                        <div class="form-two form-step">
+                            <h3>Tell us your location</h3>
+                            <p>Please fill in the details below</p>
+                            <div>
+                                <label>Enter city name</label>
+                                <input type="text" placeholder="e.g Lagos">
+                            </div>
+                        </div>
+                            
+                            <div class="form-three form-step">
+                                    <h3>How do we contact you?</h3>
+                                    <p>Please fill in the details below</p>
+                                    <div>
+                                        <label>Phone Number</label>
+                                        <input type="tel" placeholder="+234**********">
+                                    </div>
+                                    
+                                </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn-prev" disabled>Back</button>
+                                <button type="button" class="btn-next">Next step</button>
+                                <button type="button" class="btn-submit">Submit</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        <script>
+
+const nextButton = document.querySelector('.btn-next');
+const prevButton = document.querySelector('.btn-prev');
+const steps = document.querySelectorAll('.step');
+const form_steps = document.querySelectorAll('.form-step');
+
+let active = 1;
+
+nextButton.addEventListener('click', () => {
+    active++;
+    if (active > steps.length) {
+        active = steps.length;
+    }
+
+    updateProgress();
+});
+
+prevButton.addEventListener('click', ()=>{
+    active--;
+    if (active < 1) {
+        active = 1;
+    }
+
+    updateProgress();
+});
+
+
+const updateProgress = () => {
+    console.log('steps.length =>' + steps.length);
+    console.log('active =>' + active);
+
+    //toggle .active class for each list item
+    steps.forEach((step,i) => {
+        if (i ==(active-1)) {
+            step.classList.add('active');
+            form_steps[i].classList.add('active');
+            console.log('i => '+ i);
+        } else{
+            step.classList.remove('active');
+            form_steps[i].classList.remove('active');
+        }
+    });
+
+    //enable or disable prev and next buttons
+    if (active ===1) {
+        prevButton.disabled = true;
+    } else if (active === steps.length) {
+        nextButton.disabled = true;
+    } else{
+        prevButton.disabled = false;
+        nextButton.disabled = false;
+    }
+
+}
+        </script>
+    </body>
+</html>
